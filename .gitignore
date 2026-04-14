@@ -1,0 +1,4 @@
+images-random/
+*.tmp
+.venv/
+*.nc
