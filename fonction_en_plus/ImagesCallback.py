@@ -98,9 +98,11 @@ class ImagesCallback(Callback):
             for i in range(self.nb_images):
                 if from_z:
                     f = self.filename_z.format(epoch=epoch,i=i)
+                    print(f"Loading z image: {f}") 
                     images_z.append( io.imread(f) )
                 if from_random:
                     f = self.filename_random.format(epoch=epoch,i=i)
+                    print(f"Loading random image: {f}")
                     images_r.append( io.imread(f) )
         return images_z, images_r
             
