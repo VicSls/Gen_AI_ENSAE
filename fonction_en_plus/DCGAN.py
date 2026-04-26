@@ -37,7 +37,6 @@ class DCGAN(keras.Model):
         self.discriminator = discriminator
         self.generator     = generator
         self.latent_dim    = latent_dim
-        print(f'Fidle DCGAN is ready :-)  latent dim = {latent_dim}')
 
 
         
@@ -100,6 +99,7 @@ class DCGAN(keras.Model):
         #        
         # ---- Get the input we need, specified in the .fit()
         #      inputs is a tuple of tensors
+    
         #
         if isinstance(inputs, tuple):
             real_images = inputs[0]
@@ -115,7 +115,7 @@ class DCGAN(keras.Model):
 
         # Generate fake images with the generator
         generated_images = self.generator(random_latent_vectors)
-
+   
         # Combine them with real images
         combined_images = tf.concat( [generated_images, real_images], axis=0)
 
@@ -137,8 +137,11 @@ class DCGAN(keras.Model):
             # Get predictions from discriminator 
             predictions = self.discriminator(combined_images)
 
+        
+
             # Get loss
             d_loss = self.loss_fn(labels, predictions)
+        
 
         # ---- Backward pass
         #      Retrieve gradients from gradient_tape and run one step
@@ -169,12 +172,15 @@ class DCGAN(keras.Model):
 
             # Get fake images from generator
             fake_images = self.generator(random_latent_vectors)
+         
 
             # Get predictions from discriminator 
             predictions = self.discriminator(fake_images)
 
+         
             # Get loss
             g_loss = self.loss_fn(misleading_labels, predictions)
+         
         
         # ---- Backward pass (only for generator)
         #      Retrieve gradients from gradient_tape and run one step
