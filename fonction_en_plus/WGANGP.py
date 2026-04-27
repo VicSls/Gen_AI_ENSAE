@@ -30,7 +30,8 @@ class WGANGP(keras.Model):
         self.latent_dim    = latent_dim
         self.n_critic      = n_critic
         self.lambda_gp     = lambda_gp 
-        print(f'Fidle WGANGP is ready :-)  latent dim = {latent_dim}')
+        
+        
 
 
         
